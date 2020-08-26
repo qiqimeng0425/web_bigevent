@@ -57,13 +57,15 @@ function getAvatar(user) {
     $('#welcome').html('欢迎&nbsp;&nbsp;' + name);
     // 3、按需渲染用户头像
     // 获取的数据中有图片
-    if (user.user_pic) {
-        $('.layui-nav-img').attr('src', user_pic).show();
+    if (user.user_pic !== null) {
+        $('.layui-nav-img').attr('src', user.user_pic).show();
         $('.user-avatar').hide();
+    } else {
+        // 获取的数据中没有图片
+        $('.layui-nav-img').hide();
+        //找到用户名的第一个字 转大写
+        let first = name[0].toUpperCase();
+        $('.user-avatar').html(first).show()
     }
-    // 获取的数据中没有图片
-    $('.layui-nav-img').hide();
-    //找到用户名的第一个字 转大写
-    let first = name[0].toUpperCase();
-    $('.user-avatar').html(first).show()
+
 }
